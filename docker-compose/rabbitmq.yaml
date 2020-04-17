@@ -1,0 +1,24 @@
+version: '2'
+services:
+  mysql:
+    image: rabbitmq:3.7.8-management
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER="coolwang"
+      - RABBITMQ_DEFAULT_PASS="coolwang"
+    restart: always
+    ports:
+      - 15671:15671
+      - 15672:15672
+      - 5671:5671
+      - 5672:5672
+      - 4369:4369
+    volumes:
+      - ./data:/var/lib/rabbitmq
+      - /etc/localtime:/etc/localtime
+    mem_limit: 1g
+    networks:
+      - rabbitmq-network
+networks:
+  rabbitmq-network:
+    driver: bridge
